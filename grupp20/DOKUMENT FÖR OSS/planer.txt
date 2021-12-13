@@ -1,0 +1,4 @@
+GameObject klass
+Sprite klass som ärver av GameObject
+
+spelare som siktar mot muspositionen
