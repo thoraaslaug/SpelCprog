@@ -17,7 +17,7 @@ namespace grupp20
 	    Mix_Chunk* music;
     };
     
-   // extern std::string resPath;
+    extern std::string resPath;
     extern System sys;
 }
 

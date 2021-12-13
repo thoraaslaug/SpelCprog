@@ -34,7 +34,7 @@ namespace grupp20
 
             //kolla vilka objekt som lagts till i en buffer och ta bort dem
 
-            SDL_SetRenderDrawColor(sys.renderer, 255, 255, 255, 255); //sätt bakgrundfärg
+            SDL_SetRenderDrawColor(sys.renderer, 25, 255, 255, 255); //sätt bakgrundfärg
             SDL_RenderClear(sys.renderer); //rensa rendreraren (crazy?! ang ^^^)
 
             //rendrera ut alla spelkomponenter

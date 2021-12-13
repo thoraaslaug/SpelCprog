@@ -9,6 +9,8 @@ using namespace std;
 using namespace grupp20;
 
 //string resPath = "C:/Users/46768/Documents/GitHub/SpelCprog/grupp20/resources";
+//std::string resPath = "../../resources/";
+
 //exempel: SDL_LoadBMP( (resPath + "images/bg.bmp").c_str() );
 
 GameSession ses;
