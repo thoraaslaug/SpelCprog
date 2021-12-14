@@ -13,8 +13,11 @@ namespace grupp20{
         ~Player() { Sprite::~Sprite(); }
 	    //void draw() const;
 	    void tick() {}
+        void collision(const GameObject*) {}
 	    void mouseDown(int x, int y);
+        void ThrowBall(int, int);
     };
+
 }
 
 #endif

@@ -1,18 +1,32 @@
 #include "Ball.h"
+#include "GameSession.h"
 
 #include <iostream>
 #include <string>
 
 namespace grupp20{
 
-    void Ball::mouseDown(int x, int y){
+    static Ball* Instantiate(int x, int y) {
+		return new Ball(x, y);
+	}
 
-        SDL_Point mousePos = { x, y };
-
-        std::cout << SDL_PointInRect(&mousePos, &rect) << std::endl;
+    void Ball::collision(const GameObject* other){
+        std::cout << "Collision!" << std::endl;
+        ses.remove(this);
     }
 
-    static Ball* getInstance(int x, int y, int w, int h, std::string fileName) {
-		return new Ball(x, y, w, h, "ball.jpg");
+    void Ball::tick() {
+        //check collision
+        const GameObject* other = GameObject::check_collision();
+        if(other != nullptr)
+            collision(other);
+
+        //object speed
+		counter++;
+		if (rect.y <= 0)
+			ses.remove(this);
+		else if (counter % 1 == 0)
+			rect.y--;
+            rect.x++;
 	}
 }

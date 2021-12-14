@@ -12,6 +12,7 @@ namespace grupp20{
         ~Sprite() { SDL_DestroyTexture(texture); }
         virtual void draw() const;
         virtual void tick() = 0;
+        virtual void collision(const GameObject*) {}
     protected:
         Sprite(int, int, int, int, std::string);
         SDL_Texture* texture;

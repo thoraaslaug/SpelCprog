@@ -4,3 +4,6 @@ Sprite klass som ärver av GameObject
 spelare som siktar mot muspositionen
 
 vector2 klass som är worldspace i form av x och y
+
+---handledning---
+* hur rensar man intar? behövs det?

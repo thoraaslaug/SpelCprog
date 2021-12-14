@@ -15,6 +15,8 @@ namespace grupp20
     private:
         std::vector<GameObject*> gameObjects;
         std::vector<GameObject*> added, removed;
+
+        friend const GameObject* GameObject::check_collision();
     };
 
     extern GameSession ses;

@@ -16,22 +16,11 @@ using namespace grupp20;
 
 //exempel: SDL_LoadBMP( (resPath + "images/bg.bmp").c_str() );
 
-class Kasta : public GameObject {
-public:
-	Kasta() :GameObject(0, 0, 0, 0) {}
-	void draw() const {}
-	void tick() {}
-	void mouseDown(int x, int y) {
-		//Ball* b = Ball::getInstance(x, y, 70, 70, "ball.jpg");
-		ses.add(b);
-	}
-};
+//nuvarande storlek 700x500
+
 int main(int argc, char* argv[]){
-    Player player(0, 0, 100, 100, "test.jpg");
-    Kasta* kast = new Kasta();
-    ses.add(kast);
+    Player player(0, 400, 100, 100, "test.jpg");
     ses.add(&player);
-    
     ses.run();
     
     return 0;
