@@ -5,6 +5,7 @@
 #include "Sprite.h"
 #include "Player.h"
 #include <string>
+#include <vector>
 
 #define BALL_SIZE 50 //bollstorlek i pixlar
 

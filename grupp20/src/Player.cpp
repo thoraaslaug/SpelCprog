@@ -5,6 +5,8 @@
 #include <iostream>
 #include <string>
 
+#define MAX_BALLS 1
+
 namespace grupp20{
 
     void Player::mouseDown(int x, int y){

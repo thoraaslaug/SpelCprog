@@ -1,5 +1,7 @@
+---PRIO---
+*fixa så att man bara kan skjuta ett visst antal bollar
+
 spelare som siktar mot muspositionen
 definera konstanter för speldimensionerna och gör så att bollarna interagerar korrekt med dem
 
 ---handledning---
-* hur rensar man intar? behövs det?
