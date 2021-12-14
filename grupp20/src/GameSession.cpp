@@ -60,7 +60,7 @@ namespace grupp20
 					    i++;
 		    removed.clear();
 
-            SDL_SetRenderDrawColor(sys.renderer, 25, 255, 255, 255); //sätt bakgrundfärg
+            SDL_SetRenderDrawColor(sys.renderer, 255, 255, 255, 255); //sätt bakgrundfärg
             SDL_RenderClear(sys.renderer); //rensa rendreraren (crazy?! ang ^^^)
 
             for(GameObject* go : gameObjects)
