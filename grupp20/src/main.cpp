@@ -4,6 +4,9 @@
 #include <SDL2/SDL.h>
 #include "System.h"
 #include "GameSession.h"
+//#include "GameObject.h"
+//#include "Sprite.h"
+#include "Player.h"
 
 using namespace std;
 using namespace grupp20;
@@ -11,10 +14,9 @@ using namespace grupp20;
 //resPath måste ändras i System header-filen då vi antar att den måste finnas inom grupp20-namespacet
 
 //exempel: SDL_LoadBMP( (resPath + "images/bg.bmp").c_str() );
-
-GameSession ses;
-
 int main(int argc, char* argv[]){
+    Player player(0, 0, 700, 700, "test.jpg");
+    ses.add(&player);
     ses.run();
 
     return 0;

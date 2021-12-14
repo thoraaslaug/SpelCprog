@@ -1,5 +1,6 @@
 #include "GameSession.h"
 #include "System.h"
+#include "GameObject.h"
 #include <SDL2/SDL.h>
 
 using namespace std;
@@ -8,6 +9,15 @@ using namespace std;
 
 namespace grupp20
 {
+    void GameSession::add(GameObject* go){
+        added.push_back(go);
+    }
+
+    void GameSession::remove(GameObject* go){
+        removed.push_back(go);
+    }
+
+
     void GameSession::run()
     {
         bool quit = false;
@@ -22,22 +32,39 @@ namespace grupp20
                 switch(event.type)
                 {
                     case SDL_QUIT: quit = true; break;
-                    //case SDL_MOUSEBUTTONDOWN
-                    //case SDL_MOUSEBUTTONUP
+                    case SDL_MOUSEBUTTONDOWN:
+				        for (GameObject* go : gameObjects)
+					        go->mouseDown(event.button.x, event.button.y);
+				        break;
+                    case SDL_MOUSEBUTTONUP:
+				        for (GameObject* go : gameObjects)
+					        go->mouseUp(event.button.x, event.button.y);
+				        break;
                 }
             }//inre while
         
 
-            //kalla på tick() i alla objekt
+            for (GameObject* go : gameObjects)
+			    go->tick();
 
-            //kolla vilka objekt som lagts till och lägg över från buffer till master-vectorn
+		    for (GameObject* go : added)
+			    gameObjects.push_back(go);
+		    added.clear();
 
-            //kolla vilka objekt som lagts till i en buffer och ta bort dem
+		    for (GameObject* go : removed)
+			    for (vector<GameObject*>::iterator i = gameObjects.begin(); i != gameObjects.end();)
+				    if (*i == go) {
+					    i = gameObjects.erase(i);
+				    }
+				    else
+					    i++;
+		    removed.clear();
 
             SDL_SetRenderDrawColor(sys.renderer, 25, 255, 255, 255); //sätt bakgrundfärg
             SDL_RenderClear(sys.renderer); //rensa rendreraren (crazy?! ang ^^^)
 
-            //rendrera ut alla spelkomponenter
+            for(GameObject* go : gameObjects)
+                go->draw();
 
             SDL_RenderPresent(sys.renderer);
 
@@ -47,4 +74,6 @@ namespace grupp20
             }
         }
     }
+
+    GameSession ses;
 }
