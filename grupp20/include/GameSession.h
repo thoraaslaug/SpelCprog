@@ -20,6 +20,28 @@ namespace grupp20
     };
 
     extern GameSession ses;
+
+    //gör mer generisk?
+    //template<typename T>
+    //GameObject* find_first(T obj)
+    //{
+        //for(GameObject* go : ses.gameObjects){
+            //if(std::is_same<obj, go>) return go;
+        //}
+
+        //return nullptr;
+    //}
+
+    /*
+    template<typename T>
+    bool contains(this std::vector<T>, T obj){
+        for(T go : this)
+        {
+            if(std::is_same<obj, go>) return true;
+        }
+
+        return false;
+    }*/
 }
 
 #endif

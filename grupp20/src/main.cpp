@@ -4,8 +4,6 @@
 #include <SDL2/SDL.h>
 #include "System.h"
 #include "GameSession.h"
-#include "GameObject.h"
-//#include "Sprite.h"
 #include "Player.h"
 #include "Ball.h"
 

@@ -2,6 +2,9 @@
 #include "System.h"
 #include "GameObject.h"
 #include <SDL2/SDL.h>
+#include <vector>
+#include "Ball.h"
+#include "typeinfo.h"
 
 using namespace std;
 
@@ -16,7 +19,6 @@ namespace grupp20
     void GameSession::remove(GameObject* go){
         removed.push_back(go);
     }
-
 
     void GameSession::run()
     {

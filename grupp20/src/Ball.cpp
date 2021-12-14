@@ -6,13 +6,15 @@
 
 namespace grupp20{
 
+    Ball::Ball(int x, int y) : Sprite(x, y, BALL_SIZE, BALL_SIZE, "ball.jpg"){}
+
     static Ball* Instantiate(int x, int y) {
 		return new Ball(x, y);
 	}
 
     void Ball::collision(const GameObject* other){
         std::cout << "Collision!" << std::endl;
-        ses.remove(this);
+        reset();
     }
 
     void Ball::tick() {
@@ -24,9 +26,15 @@ namespace grupp20{
         //object speed
 		counter++;
 		if (rect.y <= 0)
-			ses.remove(this);
+			reset();
 		else if (counter % 1 == 0)
 			rect.y--;
             rect.x++;
 	}
+
+    void Ball::reset(){
+        //laugh at ball
+        //wacky sound effects
+        ses.remove(this);
+    }
 }
