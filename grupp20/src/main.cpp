@@ -8,8 +8,7 @@
 using namespace std;
 using namespace grupp20;
 
-//string resPath = "C:/Users/46768/Documents/GitHub/SpelCprog/grupp20/resources";
-//std::string resPath = "../../resources/";
+//resPath måste ändras i System header-filen då vi antar att den måste finnas inom grupp20-namespacet
 
 //exempel: SDL_LoadBMP( (resPath + "images/bg.bmp").c_str() );
 
