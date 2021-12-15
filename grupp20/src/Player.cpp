@@ -17,9 +17,7 @@ namespace grupp20{
     }
 
     void Player::ThrowBall(int x, int y){
-        if(Ball::balls.size() >= MAX_BALLS) return;
-
-        Ball* ball = Ball::Instantiate(x, y);
+        Ball* ball = Ball::Instatiate(x, y);
         ses.add(ball);
     }
 }
