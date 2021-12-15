@@ -5,6 +5,7 @@
 #include <iostream>
 #include <string>
 
+
 #define MAX_BALLS 1
 
 namespace grupp20{
@@ -16,8 +17,9 @@ namespace grupp20{
         ThrowBall(x, y);
     }
 
-    void Player::ThrowBall(int x, int y){
-        Ball* ball = Ball::Instatiate(x, y);
+        void Player::ThrowBall(int x, int y){
+        if(Ball::balls.size() >= MAX_BALLS) return;
+        Ball* ball = Ball::Instantiate(x, y);
         ses.add(ball);
     }
 }
