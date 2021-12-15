@@ -1,5 +1,5 @@
 ---PRIO---
-*fixa så att man bara kan skjuta ett visst antal bollar
+inget!
 
 spelare som siktar mot muspositionen
 definera konstanter för speldimensionerna och gör så att bollarna interagerar korrekt med dem

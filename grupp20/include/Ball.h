@@ -18,8 +18,9 @@ namespace grupp20{
         ~Ball() { Sprite::~Sprite(); }
 	    void tick();
         void collision(const GameObject*);
-        static Ball* Instatiate(int x, int y) { return new Ball(x, y); }
+        static Ball* Instantiate(int x, int y);
         void reset();
+        static std::vector<Ball*> balls;
     private:
         int counter;
     };

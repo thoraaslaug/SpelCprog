@@ -4,13 +4,18 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
 
 namespace grupp20{
 
+    std::vector<Ball*> Ball::balls;
+
     Ball::Ball(int x, int y) : Sprite(x, y, BALL_SIZE, BALL_SIZE, "ball.jpg"){}
 
-    static Ball* Instantiate(int x, int y) {
-		return new Ball(x, y);
+    Ball* Ball::Instantiate(int x, int y) {
+        Ball* b = new Ball(x, y);
+        balls.push_back(b);
+		return b;
 	}
 
     void Ball::collision(const GameObject* other){
@@ -36,6 +41,15 @@ namespace grupp20{
     void Ball::reset(){
         //laugh at ball
         //wacky sound effects
+        for(std::vector<Ball*>::iterator i = balls.begin(); i != balls.end();){
+            if(*i == this){
+                i = balls.erase(i);
+                break;
+            }
+            else{
+                i++;
+            }
+        }
         ses.remove(this);
     }
 }
