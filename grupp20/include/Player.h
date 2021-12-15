@@ -5,6 +5,7 @@
 #include "Sprite.h"
 #include "Ball.h"
 #include <string>
+#include <SDL2/SDL_mixer.h>
 
 namespace grupp20{
 
@@ -17,6 +18,7 @@ namespace grupp20{
         void collision(const GameObject*) {}
 	    void mouseDown(int x, int y);
         void ThrowBall(int, int);
+        Mix_Chunk* musik;
     };
 
 }

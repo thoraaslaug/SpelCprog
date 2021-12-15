@@ -15,7 +15,6 @@ namespace grupp20{
     class Ball : public Sprite{
 
     public:
-        Mix_Chunk* musik;
         Ball (int x, int y);
         ~Ball() { Sprite::~Sprite(); }
 	    void tick();

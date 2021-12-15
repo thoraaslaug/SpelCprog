@@ -20,9 +20,6 @@ namespace grupp20{
 
     void Ball::collision(const GameObject* other){
         std::cout << "Collision!" << std::endl;
-        Mix_OpenAudio(20050, AUDIO_S16SYS, 2, 4096);
-	    musik = Mix_LoadWAV( (resPath + "sounds/bomba.mp3").c_str());
-		Mix_PlayChannel(-1, musik, 1);
         reset();
     }
 
@@ -46,11 +43,15 @@ namespace grupp20{
         //wacky sound effects
         for(std::vector<Ball*>::iterator i = balls.begin(); i != balls.end();){
             if(*i == this){
+        
                 i = balls.erase(i);
                 break;
             }
             else{
                 i++;
+        //Mix_OpenAudio(20050, AUDIO_S16SYS, 2, 4096);
+	    //musik = Mix_LoadWAV( (resPath + "sounds/bomba.mp3").c_str());
+		//Mix_PlayChannel(-1, musik, -1);
             }
         }
         ses.remove(this);
