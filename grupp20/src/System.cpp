@@ -1,6 +1,6 @@
 #include "System.h"
 #include <SDL2/SDL.h>
-
+#include "Ball.h"
 #include <iostream>
 
 namespace grupp20
@@ -14,9 +14,11 @@ namespace grupp20
 	    Mix_OpenAudio(20050, AUDIO_S16SYS, 2, 4096);
 	    music = Mix_LoadWAV( (resPath + "sounds/bgMusic.wav").c_str() ); //sätter igång musiken vid start
 		//std::cout << music << std::endl;
-	    Mix_PlayChannel(-1, music, -1); //sätter loopar och L/R audio
-    }
 
+	    Mix_PlayChannel(-1, music, -1); //sätter loopar och L/R audio
+			
+		
+	}
     System::~System() {
 	    Mix_FreeChunk(music);
 	    Mix_CloseAudio();

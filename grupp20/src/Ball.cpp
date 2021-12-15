@@ -1,9 +1,10 @@
 #include "Ball.h"
 #include "GameSession.h"
 #include "Player.h"
-
+#include <SDL2/SDL.h>
 #include <iostream>
 #include <string>
+#include "System.h"
 
 namespace grupp20{
 
@@ -15,6 +16,9 @@ namespace grupp20{
 
     void Ball::collision(const GameObject* other){
         std::cout << "Collision!" << std::endl;
+        Mix_OpenAudio(20050, AUDIO_S16SYS, 2, 4096);
+	    musik = Mix_LoadWAV( (resPath + "sounds/bomba.mp3").c_str());
+		Mix_PlayChannel(-1, musik, 1);
         reset();
     }
 
