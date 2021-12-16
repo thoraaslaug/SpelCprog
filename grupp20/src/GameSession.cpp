@@ -77,5 +77,5 @@ namespace grupp20
         }
     }
 
-    GameSession ses;
+    //GameSession ses;
 }

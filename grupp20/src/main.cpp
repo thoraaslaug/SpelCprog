@@ -7,14 +7,18 @@
 #include "Player.h"
 #include "Ball.h"
 
-using namespace std;
-using namespace grupp20;
 
-//resPath måste ändras i System header-filen då vi antar att den måste finnas inom grupp20-namespacet
+using namespace grupp20;
+using namespace std;
+std::string grupp20::resPath = "./resources/";
+const int grupp20::WINDOW_X = 700;
+const int grupp20::WINDOW_Y = 500;
+const int grupp20::MAX_BALLS = 3;
+GameSession grupp20::ses;
+//resPath hittar inte sounds
 
 //exempel: SDL_LoadBMP( (resPath + "images/bg.bmp").c_str() );
 
-//nuvarande storlek 700x500
 
 int main(int argc, char* argv[]){
     Player player(0, 400, 100, 100, "test.jpg");

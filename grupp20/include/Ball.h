@@ -14,16 +14,23 @@ namespace grupp20{
     class Ball : public Sprite{
 
     public:
-        Ball (int x, int y);
+        Ball (SDL_Point, int, int, int);
         ~Ball() { Sprite::~Sprite(); }
 	    void tick();
         void collision(const GameObject*);
-        static Ball* Instantiate(int x, int y);
+        static Ball* Instantiate(SDL_Point, int, int, int);
         void reset();
-        static std::vector<Ball*> balls;
+        static const std::vector<Ball*> getBalls();
+        static const int getBallsSize();
+        SDL_Point CalculateVelocity(SDL_Point);
+        int speed; //1 = fastest
     private:
+        SDL_Point velocity;
+        static std::vector<Ball*> balls;
         int counter;
     };
+
+    extern const int MAX_BALLS;
     
 }
 #endif
