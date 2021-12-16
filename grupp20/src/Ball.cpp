@@ -8,6 +8,8 @@
 #include <vector>
 #include <tgmath.h>
 
+#define PRECISION 100
+
 namespace grupp20{
 
     std::vector<Ball*> Ball::balls;
@@ -15,16 +17,22 @@ namespace grupp20{
     int const Ball::getBallsSize() { return balls.size(); }
 
     SDL_Point Ball::CalculateVelocity(SDL_Point direction){
+        //precisionen är ganska dålig
+
+        //nu normaliserar jag. man kan köra utan normalisering för att få högre precision men
+        //då ändras hasigheten i förhållande till hur långt bort man klickar
+        
         int x = direction.x - rect.x;
         int y = direction.y - rect.y;
 
+        
         double magnitude = sqrt(x * x + y * y);
 
-        double tempX = x / magnitude;
-        double tempY = y / magnitude;
+        double tempX = (x * PRECISION) / magnitude;
+        double tempY = (y * PRECISION) / magnitude;
 
-        x = (int)(tempX * 10); //eftersom att point sätts i intar måste vi tiodubbla normaliseringen
-        y = (int)(tempY * 10);
+        x = (int)round(tempX / (PRECISION / 10));
+        y = (int)round(tempY / (PRECISION / 10));
 
         std::cout << "X: " << x << "    " << "Y: " << y << std::endl;
 
@@ -38,7 +46,9 @@ namespace grupp20{
     }
 
     Ball* Ball::Instantiate(SDL_Point direction, int x = 0, int y = 0, int spd = 1) {
-        Ball* b = new Ball(direction, x, y, spd);
+        int offsetX = x - BALL_SIZE / 2; //account for center pivot
+        int offsetY = y - BALL_SIZE / 2;
+        Ball* b = new Ball(direction, offsetX, offsetY, spd);
         balls.push_back(b);
 		return b;
 	}
@@ -53,22 +63,15 @@ namespace grupp20{
         const GameObject* other = GameObject::check_collision();
         if(other != nullptr)
             collision(other);
-
-        //object speed
-        /*
-		counter++;
-		if (rect.y <= 0)
-			reset();
-		else if (counter % 1 == 0)
-			rect.y--;
-            rect.x++;*/
         
+        //object speed
         counter++;
-        //rect.x > WINDOW_X || rect.x < 0 || rect.y < 0 || rect.y > WINDOW_Y
         if(rect.y <= 0 || rect.y >= WINDOW_Y - rect.h || rect.x >= WINDOW_X - rect.w || rect.x <= 0){
             reset();
         }
         else if(counter % speed == 0){
+            //rect.x += velocity.x / (PRECISION / 10);
+            //rect.y += velocity.y / (PRECISION / 10);
             rect.x += velocity.x;
             rect.y += velocity.y;
         }
@@ -88,6 +91,7 @@ namespace grupp20{
                 i++;
             }
         }
+
         ses.remove(this);
     }
 }

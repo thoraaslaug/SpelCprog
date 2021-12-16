@@ -22,6 +22,7 @@ namespace grupp20{
     SDL_Point CalculateDirection(){
         SDL_Point p; //punkt att röra sig till
         SDL_GetMouseState(&p.x, &p.y);
+
         return p;
     }
 
