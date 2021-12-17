@@ -15,6 +15,12 @@ namespace grupp20
         SDL_Window* window;
 	    SDL_Renderer* renderer;
 	    Mix_Chunk* music;
+
+        
+	SDL_Renderer* System::get_renderer() const 
+	{
+		return renderer;
+	}
     };
     
     extern const int WINDOW_X;
