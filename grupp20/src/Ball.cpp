@@ -6,9 +6,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include <tgmath.h>
-
-#define PRECISION 100
+#include <math.h>
 
 namespace grupp20{
 
@@ -16,39 +14,30 @@ namespace grupp20{
     std::vector<Ball*> const Ball::getBalls(){ return balls; }
     int const Ball::getBallsSize() { return balls.size(); }
 
-    SDL_Point Ball::CalculateVelocity(SDL_Point direction){
-        //precisionen är ganska dålig
-
-        //nu normaliserar jag. man kan köra utan normalisering för att få högre precision men
-        //då ändras hasigheten i förhållande till hur långt bort man klickar
-        
-        int x = direction.x - rect.x;
-        int y = direction.y - rect.y;
-
+    Velocity Ball::NormalizeVelocity(Velocity direction){
+        double x = direction.x - rect.x;
+        double y = direction.y - rect.y;
         
         double magnitude = sqrt(x * x + y * y);
 
-        double tempX = (x * PRECISION) / magnitude;
-        double tempY = (y * PRECISION) / magnitude;
+        x /= magnitude;
+        y /= magnitude;
 
-        x = (int)round(tempX / (PRECISION / 10));
-        y = (int)round(tempY / (PRECISION / 10));
-
-        std::cout << "X: " << x << "    " << "Y: " << y << std::endl;
-
-        SDL_Point result = { x, y };
+        Velocity result = { x, y };
+        std::cout << "X: " << result.x << "    " << "Y: " << result.y << std::endl;
         return result;
     }
 
-    Ball::Ball(SDL_Point direction, int x = 0, int y = 0, int spd = 1) : Sprite(x, y, BALL_SIZE, BALL_SIZE, "ball.jpg"){
-        speed = spd;
-        velocity = CalculateVelocity(direction);
+    Ball::Ball(Velocity direction, int x = 0, int y = 0, int ballSpeed = 1, int tick = 1) : Sprite(x, y, BALL_SIZE, BALL_SIZE, "ball.jpg"){
+        speed = ballSpeed;
+        tickSpeed = tick;
+        velocity = NormalizeVelocity(direction);
     }
 
-    Ball* Ball::Instantiate(SDL_Point direction, int x = 0, int y = 0, int spd = 1) {
+    Ball* Ball::Instantiate(Velocity direction, int x = 0, int y = 0, int ballSpeed = 1, int tick = 1) {
         int offsetX = x - BALL_SIZE / 2; //account for center pivot
         int offsetY = y - BALL_SIZE / 2;
-        Ball* b = new Ball(direction, offsetX, offsetY, spd);
+        Ball* b = new Ball(direction, offsetX, offsetY, ballSpeed, tick);
         balls.push_back(b);
 		return b;
 	}
@@ -69,11 +58,20 @@ namespace grupp20{
         if(rect.y <= 0 || rect.y >= WINDOW_Y - rect.h || rect.x >= WINDOW_X - rect.w || rect.x <= 0){
             reset();
         }
-        else if(counter % speed == 0){
-            //rect.x += velocity.x / (PRECISION / 10);
-            //rect.y += velocity.y / (PRECISION / 10);
-            rect.x += velocity.x;
-            rect.y += velocity.y;
+        else if(counter % tickSpeed == 0){
+            double velX = 0;
+            double velY = 0;
+            
+            velocity.restX += velocity.x;
+            velocity.restY += velocity.y;
+
+            if(velocity.restX >= 1 && velocity.x >= 0){ velX++; velocity.restX--; }
+            if(velocity.restY >= 1 && velocity.y >= 0) { velY++; velocity.restY--; }
+            if(velocity.restX <= -1 && velocity.x < 0) { velX--; velocity.restX++; }
+            if(velocity.restY <= -1 && velocity.y < 0) { velY--; velocity.restY++; }
+            
+            rect.x += (int)round(velX) * speed;
+            rect.y += (int)round(velY) * speed;
         }
 	}
 

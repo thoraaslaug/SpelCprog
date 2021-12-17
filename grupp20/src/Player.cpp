@@ -19,17 +19,18 @@ namespace grupp20{
         ThrowBall();
     }
 
-    SDL_Point CalculateDirection(){
+    Velocity CalculateDirection(){
         SDL_Point p; //punkt att röra sig till
         SDL_GetMouseState(&p.x, &p.y);
 
-        return p;
+        Velocity vel = { (double)(p.x - (BALL_SIZE / 2)), (double)(p.y - (BALL_SIZE / 2)) }; //account for center pivot
+        return vel;
     }
 
     void Player::ThrowBall(){
         if(Ball::getBallsSize() >= MAX_BALLS) return;
 
-        Ball* ball = Ball::Instantiate(CalculateDirection(), rect.x + 200, rect.y - 200, 1);
+        Ball* ball = Ball::Instantiate(CalculateDirection(), rect.x + 200, rect.y - 200, 1, 1);
         ses.add(ball);
     }
 

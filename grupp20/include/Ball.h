@@ -11,21 +11,29 @@
 
 namespace grupp20{
 
-    class Ball : public Sprite{
+    struct Velocity{
+        double x;
+        double y;
 
+        double restX;
+        double restY;
+    };
+
+    class Ball : public Sprite{
     public:
-        Ball (SDL_Point, int, int, int);
+        Ball (Velocity, int, int, int, int);
         ~Ball() { Sprite::~Sprite(); }
 	    void tick();
         void collision(const GameObject*);
-        static Ball* Instantiate(SDL_Point, int, int, int);
+        static Ball* Instantiate(Velocity, int, int, int, int);
         void reset();
         static const std::vector<Ball*> getBalls();
         static const int getBallsSize();
-        SDL_Point CalculateVelocity(SDL_Point);
-        int speed; //1 = fastest
+        Velocity NormalizeVelocity(Velocity);
+        int tickSpeed; //1 = fastest
+        int speed;
     private:
-        SDL_Point velocity;
+        Velocity velocity;
         static std::vector<Ball*> balls;
         int counter;
     };
