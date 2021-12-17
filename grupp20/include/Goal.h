@@ -18,7 +18,7 @@ namespace grupp20{
         static Goal* Instantiate(int, int);
         void reset();
     private:
-        
+
     };
     
 }

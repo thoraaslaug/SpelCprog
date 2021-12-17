@@ -3,7 +3,6 @@
 #include "Player.h"
 #include "System.h"
 #include "ObjSpawner.h"
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -11,6 +10,8 @@
 
 
 namespace grupp20{
+
+    //std::vector<Goal*> ObjSpawner::goalList;
 
     Goal::Goal(int x = 0, int y = 0) : Sprite(x, y, GOAL_SIZE, GOAL_SIZE, "hoop.jpg"){
         
@@ -50,7 +51,7 @@ namespace grupp20{
         //laugh at ball
         //wacky sound effects
         std::cout << "Ball destroyed" << std::endl;
-        
+        ObjSpawner::SpawnGoal();
         ses.remove(this);
     }
 }

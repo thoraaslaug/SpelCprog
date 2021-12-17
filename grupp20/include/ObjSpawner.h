@@ -13,13 +13,13 @@ namespace grupp20{
     public:
         ObjSpawner();
         ~ObjSpawner() { Sprite::~Sprite(); }
-        void SpawnGoal();
+        static void SpawnGoal();
         void tick();
         int const getGoalList();
         
     private:
         static std::vector<Goal*> goalList;
-
+    
 };
 }
 
