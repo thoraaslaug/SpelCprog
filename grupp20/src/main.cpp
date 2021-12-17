@@ -6,6 +6,8 @@
 #include "GameSession.h"
 #include "Player.h"
 #include "Ball.h"
+#include "Goal.h"
+#include "ObjSpawner.h"
 
 
 using namespace grupp20;
@@ -21,7 +23,9 @@ GameSession grupp20::ses;
 
 
 int main(int argc, char* argv[]){
+    ObjSpawner objspawner;
     Player player(0, 400, 100, 100, "test.jpg");
+    ses.add(&objspawner);
     ses.add(&player);
     ses.run();
     

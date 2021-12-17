@@ -1,6 +1,7 @@
 #include "Player.h"
 #include "Ball.h"
 #include "GameSession.h"
+#include "Goal.h"
 
 #include <iostream>
 #include <string>
@@ -9,6 +10,7 @@ namespace grupp20{
 
     std::vector<Player*> players;
     const std::vector<Player*> getPlayers() { return players; }
+    
 
     Player::Player(int x, int y, int w, int h, std::string fileName) : Sprite(x, y, w, h, fileName){}
 
