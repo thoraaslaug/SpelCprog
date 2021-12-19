@@ -12,6 +12,7 @@ namespace grupp20{
         virtual void draw() const = 0;
         SDL_Rect getRect() const { return rect; }
         virtual void tick() = 0;
+        int tickSpeed = 1;
         virtual void collision(const GameObject*) = 0;
         virtual const GameObject* check_collision();
     protected:

@@ -12,7 +12,7 @@ namespace grupp20{
     class Player : public Sprite{
     public:
         Player(int x, int y, int w, int h, std::string fileName);
-        ~Player() { Sprite::~Sprite(); }
+        ~Player();
 	    //void draw() const;
 	    void tick() {}
         void collision(const GameObject*) {}

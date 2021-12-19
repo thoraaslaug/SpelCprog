@@ -11,17 +11,31 @@
 
 namespace grupp20{
 
-    //std::vector<Goal*> ObjSpawner::goalList;
+    std::vector<Goal*> Goal::goalList;
+
+    const std::vector<Goal*> Goal::getGoalList() { return goalList; }
 
     Goal::Goal(int x = 0, int y = 0) : Sprite(x, y, GOAL_SIZE, GOAL_SIZE, "hoop.jpg"){
-        
+        goalList.push_back(this);
+    }
+
+    Goal::~Goal(){
+
+        for(std::vector<Goal*>::iterator i = goalList.begin(); i != goalList.end();)
+        {
+            if(*i == this){
+                i = goalList.erase(i);
+                break;
+            }
+            else{
+                i++;
+            }
+        }
+
+        Sprite::~Sprite();
     }
 
     Goal* Goal::Instantiate(int x = 0, int y = 0) {
-        
-        
-
-
         x = rand()% 210 + 200;
         y = rand()% 210 + 200; 
 
@@ -51,7 +65,7 @@ namespace grupp20{
         //laugh at ball
         //wacky sound effects
         std::cout << "Ball destroyed" << std::endl;
-        ObjSpawner::SpawnGoal();
+        ObjSpawner::SpawnGoal(); //borde skicka med detta objekt för att instantieras. eller ta bort objspawner
         ses.remove(this);
     }
 }

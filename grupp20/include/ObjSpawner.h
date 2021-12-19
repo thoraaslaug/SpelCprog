@@ -7,20 +7,20 @@
 #include <string>
 #include <vector>
 
+//poänglös klass??
+
 namespace grupp20{
 
-    class ObjSpawner : public Sprite{
+    class ObjSpawner : public GameObject{
     public:
         ObjSpawner();
-        ~ObjSpawner() { Sprite::~Sprite(); }
+        ~ObjSpawner() { GameObject::~GameObject(); }
         static void SpawnGoal();
         void tick();
-        int const getGoalList();
-        
+        void draw() const{}
+        void collision(const GameObject*){}
     private:
-        static std::vector<Goal*> goalList;
-    
-};
+    };
 }
 
 #endif

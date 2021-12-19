@@ -8,11 +8,28 @@
 
 namespace grupp20{
 
-    std::vector<Player*> players;
-    const std::vector<Player*> getPlayers() { return players; }
+    std::vector<Player*> Player::players;
+    const std::vector<Player*> Player::getPlayers() { return players; }
     
 
-    Player::Player(int x, int y, int w, int h, std::string fileName) : Sprite(x, y, w, h, fileName){}
+    Player::Player(int x, int y, int w, int h, std::string fileName) : Sprite(x, y, w, h, fileName){
+        players.push_back(this);
+    }
+    
+    Player::~Player(){
+        
+        for(std::vector<Player*>::iterator i = players.begin(); i != players.end();){
+            if(*i == this){
+                i = players.erase(i);
+                break;
+            }
+            else{
+                i++;
+            }
+        }
+
+        Sprite::~Sprite();
+    }
 
     void Player::mouseDown(int x, int y){
         //SDL_Point mousePos = { x, y };

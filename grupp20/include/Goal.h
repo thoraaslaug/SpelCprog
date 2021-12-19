@@ -2,6 +2,7 @@
 #define GOAL_H
 
 #include "GameObject.h"
+#include "ObjSpawner.h"
 #include "Sprite.h"
 #include "Player.h"
 
@@ -12,13 +13,14 @@ namespace grupp20{
     class Goal : public Sprite{
     public:
         Goal (int, int);
-        ~Goal() { Sprite::~Sprite(); }
+        ~Goal();
 	    void tick();
         void collision(const GameObject*);
         static Goal* Instantiate(int, int);
         void reset();
+        const static std::vector<Goal*> getGoalList();
     private:
-
+        static std::vector<Goal*> goalList;
     };
     
 }

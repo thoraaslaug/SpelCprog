@@ -89,7 +89,7 @@ namespace grupp20{
                 i++;
             }
         }
-
+        
         ses.remove(this);
     }
 }
