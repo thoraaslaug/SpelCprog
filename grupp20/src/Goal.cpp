@@ -2,7 +2,7 @@
 #include "GameSession.h"
 #include "Player.h"
 #include "System.h"
-#include "ObjSpawner.h"
+#include "Ball.h"
 #include <iostream>
 #include <string>
 #include <vector>
@@ -20,7 +20,6 @@ namespace grupp20{
     }
 
     Goal::~Goal(){
-
         for(std::vector<Goal*>::iterator i = goalList.begin(); i != goalList.end();)
         {
             if(*i == this){
@@ -35,22 +34,38 @@ namespace grupp20{
         Sprite::~Sprite();
     }
 
+    void Goal::respawn(){
+        int x = rand()% 210 + 200;
+        int y = rand()% 210 + 200;
+
+        std::cout << "Goal X:" << x << "Goal Y:" << y << std::endl;
+
+        rect.x = x;
+        rect.y = y;
+    }
+
     Goal* Goal::Instantiate(int x = 0, int y = 0) {
-        x = rand()% 210 + 200;
-        y = rand()% 210 + 200; 
-
-        std::cout << "X:" << x << " Y:" << y << std::endl;
-
         Goal* g = new Goal(x,y);
-        
+        ses.add(g);
 		return g;
 	}
 
+    void Goal::destroy_balls(){
+        for(Ball* b : Ball::getBalls()){
+            b->reset();
+        }
+    }
+
     void Goal::collision(const GameObject* other){
         std::cout << "GOOOOOOAL!" << std::endl;
-
-        reset();
         
+        GameObject* a = const_cast<GameObject*>(other);
+        Ball* b = dynamic_cast<Ball*>(a);
+
+        if(b != nullptr)
+            b->reset();
+        //destroy_balls();
+        respawn();
     }
 
     void Goal::tick() {
@@ -60,12 +75,4 @@ namespace grupp20{
             collision(other);
         
 	}
-
-    void Goal::reset(){
-        //laugh at ball
-        //wacky sound effects
-        std::cout << "Ball destroyed" << std::endl;
-        ObjSpawner::SpawnGoal(); //borde skicka med detta objekt för att instantieras. eller ta bort objspawner
-        ses.remove(this);
-    }
 }

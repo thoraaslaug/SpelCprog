@@ -7,7 +7,7 @@
 #include "Player.h"
 #include "Ball.h"
 #include "Goal.h"
-#include "ObjSpawner.h"
+#include "Wall.h"
 
 
 using namespace grupp20;
@@ -23,10 +23,13 @@ GameSession grupp20::ses;
 
 
 int main(int argc, char* argv[]){
-    ObjSpawner objspawner;
     Player player(0, 400, 100, 100, "test.jpg");
-    ses.add(&objspawner);
+    Wall wall1(500, 0, 100, 100);
+    Wall wall2(0, 0, 20, 350);
+    Goal::Instantiate(400, 400);
     ses.add(&player);
+    ses.add(&wall1);
+    ses.add(&wall2);
     ses.run();
     
     return 0;

@@ -29,12 +29,15 @@ namespace grupp20{
         void reset();
         static const std::vector<Ball*> getBalls();
         static const int getBallsSize();
-        Velocity NormalizeVelocity(Velocity);
+        void CalculateVelocity(Velocity);
+        Velocity getVelocity(){ return velocity; }
         int tickSpeed; //1 = fastest
         int speed;
     private:
+        void bounce(const GameObject*);
         Velocity velocity;
         static std::vector<Ball*> balls;
+        const GameObject* latestCollision; //check for latest collided object
         int counter;
     };
 

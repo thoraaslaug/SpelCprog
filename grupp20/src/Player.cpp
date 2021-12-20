@@ -49,8 +49,7 @@ namespace grupp20{
     void Player::ThrowBall(){
         if(Ball::getBallsSize() >= MAX_BALLS) return;
 
-        Ball* ball = Ball::Instantiate(CalculateDirection(), rect.x + 200, rect.y - 200, 1, 1);
+        Ball* ball = Ball::Instantiate(CalculateDirection(), rect.x + 100, rect.y - 100, 3, 1);
         ses.add(ball);
     }
-
 }

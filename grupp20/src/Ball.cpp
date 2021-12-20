@@ -7,6 +7,7 @@
 #include <string>
 #include <vector>
 #include <math.h>
+#include <stdio.h>
 
 namespace grupp20{
 
@@ -14,7 +15,31 @@ namespace grupp20{
     std::vector<Ball*> const Ball::getBalls(){ return balls; }
     int const Ball::getBallsSize() { return balls.size(); }
 
-    Velocity Ball::NormalizeVelocity(Velocity direction){
+    void Ball::bounce(const GameObject* other){
+        if(latestCollision == other) return;
+        latestCollision = other;
+
+        printf("Bounce!");
+        
+        int otherCenterX = (other->getRect().w / 2);
+        int otherCenterY = other->getRect().h / 2;
+        int ballCenterX = rect.w / 2;
+        int ballCenterY = rect.h / 2;
+
+        int distanceX = (other->getRect().x + otherCenterX) - (rect.x + ballCenterX);
+        int distanceY = (other->getRect().y + otherCenterY) - (rect.y + ballCenterY);
+
+        
+        if(distanceX < -otherCenterX || distanceX > otherCenterX){
+            velocity.x = -velocity.x;
+        }
+        //upper under
+        if(distanceY < -otherCenterY || distanceY > otherCenterY){
+            velocity.y = -velocity.y;
+        }
+    }
+
+    void Ball::CalculateVelocity(Velocity direction){
         double x = direction.x - rect.x;
         double y = direction.y - rect.y;
         
@@ -25,13 +50,14 @@ namespace grupp20{
 
         Velocity result = { x, y };
         std::cout << "X: " << result.x << "    " << "Y: " << result.y << std::endl;
-        return result;
+        
+        velocity = result;
     }
 
     Ball::Ball(Velocity direction, int x = 0, int y = 0, int ballSpeed = 1, int tick = 1) : Sprite(x, y, BALL_SIZE, BALL_SIZE, "ball.jpg"){
         speed = ballSpeed;
         tickSpeed = tick;
-        velocity = NormalizeVelocity(direction);
+        CalculateVelocity(direction);
     }
 
     Ball* Ball::Instantiate(Velocity direction, int x = 0, int y = 0, int ballSpeed = 1, int tick = 1) {
@@ -44,10 +70,21 @@ namespace grupp20{
 
     void Ball::collision(const GameObject* other){
         std::cout << "Collision!" << std::endl;
-        reset();
+
+        const Ball* b = dynamic_cast<const Ball*>(other);
+
+        if(b != nullptr){
+            reset();
+        }
+        else{
+            bounce(other);
+        }
     }
 
     void Ball::tick() {
+        //latestCollision = nullptr;
+        std::cout << "X: " << velocity.x << "    " << "Y: " << velocity.y << std::endl;
+
         //check collision
         const GameObject* other = GameObject::check_collision();
         if(other != nullptr)
