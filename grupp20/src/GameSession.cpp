@@ -5,7 +5,8 @@
 #include <vector>
 #include "Ball.h"
 #include "typeinfo.h"
-
+#include <SDL2/SDL_ttf.h>
+#include "Goal.h"
 using namespace std;
 
 #define FPS 60
@@ -63,6 +64,33 @@ namespace grupp20
 		    removed.clear();
 
             SDL_SetRenderDrawColor(sys.renderer, 255, 255, 255, 255); //sätt bakgrundfärg
+            TTF_Font* Sans = TTF_OpenFont("Sans.ttf", 100);
+            SDL_Color White = {25, 25, 25};
+
+
+            SDL_Surface* surfaceMessage =
+              TTF_RenderText_Solid(Sans, "Score " , White); 
+
+
+            SDL_Texture* Message = SDL_CreateTextureFromSurface(sys.renderer, surfaceMessage);
+
+                SDL_Rect Message_rect; 
+                Message_rect.x = 100;   
+                Message_rect.y = 100; 
+                Message_rect.w = 100; 
+                Message_rect.h = 100; 
+
+            SDL_RenderCopy(sys.renderer, Message, NULL, &Message_rect);
+              SDL_FreeSurface(surfaceMessage);
+
+           //SDL_SetRenderDrawColor(sys.renderer, 25, 10, 40, SDL_ALPHA_OPAQUE);
+             //   SDL_RenderClear(sys.renderer);
+
+               // SDL_SetRenderDrawColor(sys.renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
+                //SDL_RenderDrawLine(sys.renderer, 320, 200, 300, 240);
+                //SDL_RenderDrawLine(sys.renderer, 300, 240, 340, 240);
+                //SDL_RenderDrawLine(sys.renderer, 340, 240, 320, 200);
+                //SDL_RenderPresent(sys.renderer);
             SDL_RenderClear(sys.renderer); //rensa rendreraren (crazy?! ang ^^^)
 
             for(GameObject* go : gameObjects)
@@ -77,5 +105,6 @@ namespace grupp20
         }
     }
 
-    //GameSession ses;
 }
+
+    //GameSession ses;

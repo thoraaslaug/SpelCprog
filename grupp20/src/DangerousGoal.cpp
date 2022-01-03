@@ -1,4 +1,4 @@
-#include "Goal.h"
+#include "DangerousGoal.h"
 #include "GameSession.h"
 #include "Player.h"
 #include "System.h"
@@ -11,16 +11,16 @@
 
 namespace grupp20{
 
-    std::vector<Goal*> Goal::goalList;
+    std::vector<DangerousGoal*> DangerousGoal::goalList;
 
-    const std::vector<Goal*> Goal::getGoalList() { return goalList; }
+    const std::vector<DangerousGoal*> DangerousGoal::getGoalList() { return goalList; }
 
-    Goal::Goal(int x = 0, int y = 0) : Sprite(x, y, GOAL_SIZE, GOAL_SIZE, "hoop.jpg"){
+    DangerousGoal::DangerousGoal(int x = 0, int y = 0) : Sprite(x, y, GOAL_SIZE, GOAL_SIZE, "wall.jpg"){
         goalList.push_back(this);
     }
 
-    Goal::~Goal(){
-        for(std::vector<Goal*>::iterator i = goalList.begin(); i != goalList.end();)
+    DangerousGoal::~DangerousGoal(){
+        for(std::vector<DangerousGoal*>::iterator i = goalList.begin(); i != goalList.end();)
         {
             if(*i == this){
                 i = goalList.erase(i);
@@ -34,7 +34,7 @@ namespace grupp20{
         Sprite::~Sprite();
     }
 
-    void Goal::respawn(){
+    void DangerousGoal::respawn(){
         int x = rand()% 210 + 200;
         int y = rand()% 210 + 200;
 
@@ -44,21 +44,21 @@ namespace grupp20{
         rect.y = y;
     }
 
-    Goal* Goal::Instantiate(int x = 0, int y = 0) {
-        Goal* g = new Goal(x,y);
+    DangerousGoal* DangerousGoal::Instantiate(int x = 0, int y = 0) {
+        DangerousGoal* g = new DangerousGoal(x,y);
         ses.add(g);
 		return g;
 	}
 
-    void Goal::destroy_balls(){
+    void DangerousGoal::destroy_balls(){
         for(Ball* b : Ball::getBalls()){
             b->reset();
         }
     }
 
-    void Goal::collision(const GameObject* other){
+   /* void DangerousGoal::collision(const GameObject* other){
         std::cout << "GOOOOOOAL!" << std::endl;
-        std::cout << "Score !"  << playerScore << std::endl;
+        //std::cout << "Score !"  << playerScore << std::endl;
         GameObject* a = const_cast<GameObject*>(other);
         Ball* b = dynamic_cast<Ball*>(a);
 
@@ -68,9 +68,9 @@ namespace grupp20{
         
         //destroy_balls();
         respawn();
-    }
+    }*/
 
-    void Goal::tick() {
+    void DangerousGoal::tick() {
         //check collision
         const GameObject* other = GameObject::check_collision();
         if(other != nullptr)

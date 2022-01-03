@@ -8,6 +8,8 @@
 #include "Ball.h"
 #include "Goal.h"
 #include "Wall.h"
+#include "SceneManager.h"
+#include "DangerousGoal.h"
 
 
 using namespace grupp20;
@@ -23,14 +25,17 @@ GameSession grupp20::ses;
 
 
 int main(int argc, char* argv[]){
+
     Player player(0, 400, 100, 100, "test.jpg");
     Wall wall1(500, 0, 100, 100);
     Wall wall2(0, 0, 20, 350);
     Goal::Instantiate(400, 400);
+    DangerousGoal::Instantiate(300, 300);
     ses.add(&player);
     ses.add(&wall1);
     ses.add(&wall2);
     ses.run();
+
     
     return 0;
 }

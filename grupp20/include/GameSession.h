@@ -12,6 +12,10 @@ namespace grupp20
         void run();
         void add(GameObject*);
         void remove(GameObject*);
+        static GameSession& getInstance() {
+			static GameSession instance;
+			return instance;
+		}
     private:
         std::vector<GameObject*> gameObjects;
         std::vector<GameObject*> added, removed;

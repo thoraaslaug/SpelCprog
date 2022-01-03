@@ -33,8 +33,11 @@ namespace grupp20{
         Velocity getVelocity(){ return velocity; }
         int tickSpeed; //1 = fastest
         int speed;
+
     private:
         void bounce(const GameObject*);
+        int playerScore = 0; 
+        SDL_Renderer* renderer;
         Velocity velocity;
         static std::vector<Ball*> balls;
         const GameObject* latestCollision; //check for latest collided object

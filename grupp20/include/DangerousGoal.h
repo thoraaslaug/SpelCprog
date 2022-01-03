@@ -1,5 +1,5 @@
-#ifndef GOAL_H
-#define GOAL_H
+#ifndef DANGEROUSGOAL_H
+#define DANGEROUSGOAL_H
 
 #include "GameObject.h"
 #include "Sprite.h"
@@ -10,19 +10,19 @@
 
 namespace grupp20{
 
-    class Goal : public Sprite{
+    class DangerousGoal : public Sprite{
     public:
-        ~Goal();
+        ~DangerousGoal();
 	    void tick();
         void collision(const GameObject*);
-        static Goal* Instantiate(int, int);
+        static DangerousGoal* Instantiate(int, int);
         void respawn();
         void destroy_balls();
-        const static std::vector<Goal*> getGoalList();
+        const static std::vector<DangerousGoal*> getGoalList();
     private:
-        Goal (int, int);
+        DangerousGoal (int, int);
         int playerScore = 0;
-        static std::vector<Goal*> goalList;
+        static std::vector<DangerousGoal*> goalList;
     };
     
 }

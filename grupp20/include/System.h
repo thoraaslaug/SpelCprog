@@ -11,7 +11,10 @@ namespace grupp20
     {
         System();
         ~System();
-
+        static System& getInstance() {
+			static System instance;
+			return instance;
+		}
         SDL_Window* window;
 	    SDL_Renderer* renderer;
 	    Mix_Chunk* music;

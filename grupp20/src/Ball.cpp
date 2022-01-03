@@ -8,7 +8,7 @@
 #include <vector>
 #include <math.h>
 #include <stdio.h>
-
+#include "System.h"
 namespace grupp20{
 
     std::vector<Ball*> Ball::balls;
@@ -72,7 +72,6 @@ namespace grupp20{
         std::cout << "Collision!" << std::endl;
 
         const Ball* b = dynamic_cast<const Ball*>(other);
-
         if(b != nullptr){
             reset();
         }
@@ -107,10 +106,31 @@ namespace grupp20{
             if(velocity.restX <= -1 && velocity.x < 0) { velX--; velocity.restX++; }
             if(velocity.restY <= -1 && velocity.y < 0) { velY--; velocity.restY++; }
             
+              //  SDL_RenderDrawLine(System::renderer, 100, 100, 100, 100);
+                   // if(velocity.restX >= 1 && velocity.x >= 0){ velX++; velocity.restX--; }
+                //}
+                //SDL_RenderDrawLine(renderer, velocity.restY,velocity.y, velX++, velocity.restY--);
+                   //  if(velocity.restY >= 1 && velocity.y >= 0) { velY++; velocity.restY--; }
+                //}
+                //SDL_RenderDrawLine(renderer, velocity.restX,velocity.x, velX--, velocity.restX++);
+                  //  if(velocity.restX <= -1 && velocity.x < 0) { velX--; velocity.restX++; }
+                //}
+                //SDL_RenderDrawLine(renderer, velocity.restY,velocity.y, velY--, velocity.restY++);
+                   // if(velocity.restY <= -1 && velocity.y < 0) { velY--; velocity.restY++; }
+                //}
+              //  SDL_RenderPresent(renderer);
+                
+
             rect.x += (int)round(velX) * speed;
             rect.y += (int)round(velY) * speed;
+            
+            
         }
-	}
+
+	}       
+
+
+
 
     void Ball::reset(){
         //laugh at ball
