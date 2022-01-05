@@ -8,6 +8,7 @@
 #include "Ball.h"
 #include "Goal.h"
 #include "Wall.h"
+#include "DangerousWall.h"
 
 
 using namespace grupp20;
@@ -26,6 +27,7 @@ int main(int argc, char* argv[]){
     Player player(0, 400, 100, 100, "test.jpg");
     Wall wall1(500, 0, 100, 100);
     Wall wall2(0, 0, 20, 350);
+    DangerousWall::Instantiate(40 ,40);
     Goal::Instantiate(400, 400);
     ses.add(&player);
     ses.add(&wall1);
