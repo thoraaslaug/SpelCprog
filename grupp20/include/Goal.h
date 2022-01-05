@@ -18,10 +18,12 @@ namespace grupp20{
         static Goal* Instantiate(int, int);
         void respawn();
         void destroy_balls();
+        void randomize_respawn(bool check) { randomizeRespawn = check; }
         const static std::vector<Goal*> getGoalList();
     private:
         Goal (int, int);
         static std::vector<Goal*> goalList;
+        bool randomizeRespawn = false;
     };
     
 }

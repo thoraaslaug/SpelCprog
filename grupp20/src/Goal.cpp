@@ -7,7 +7,7 @@
 #include <string>
 #include <vector>
 
-
+#define RESPAWN_AREA 200
 
 namespace grupp20{
 
@@ -17,6 +17,8 @@ namespace grupp20{
 
     Goal::Goal(int x = 0, int y = 0) : Sprite(x, y, GOAL_SIZE, GOAL_SIZE, "hoop.jpg"){
         goalList.push_back(this);
+        XOrigin = x;
+        YOrigin = y;
     }
 
     Goal::~Goal(){
@@ -35,13 +37,29 @@ namespace grupp20{
     }
 
     void Goal::respawn(){
-        int x = rand()% 210 + 200;
-        int y = rand()% 210 + 200;
+        int x = rect.x;
+        int y = rect.y;
 
-        std::cout << "Goal X:" << x << "Goal Y:" << y << std::endl;
+        
 
-        rect.x = x;
-        rect.y = y;
+        if(randomizeRespawn){
+            int Xrangemin = XOrigin - RESPAWN_AREA;
+            int Yrangemin = YOrigin - RESPAWN_AREA;
+            int Xrangemax = XOrigin + RESPAWN_AREA;
+            int Yrangemax = YOrigin + RESPAWN_AREA;
+
+            x = rand()% Xrangemax + Xrangemin;
+            y = rand()% Yrangemax + Yrangemin;
+
+            std::cout << "Goal X:" << x << "Goal Y:" << y << std::endl;
+            rect.x = x;
+            rect.y = y;
+        }
+        else{
+            rect.x = XOrigin;
+            rect.y = YOrigin;
+        }
+
     }
 
     Goal* Goal::Instantiate(int x = 0, int y = 0) {
@@ -57,13 +75,14 @@ namespace grupp20{
     }
 
     void Goal::collision(const GameObject* other){
-        std::cout << "GOOOOOOAL!" << std::endl;
         
         GameObject* a = const_cast<GameObject*>(other);
         Ball* b = dynamic_cast<Ball*>(a);
 
-        if(b != nullptr)
+        if(b != nullptr){
             b->reset();
+            std::cout << "GOOOOOOAL!" << std::endl;
+            }
         //destroy_balls();
         respawn();
     }
@@ -73,6 +92,7 @@ namespace grupp20{
         const GameObject* other = GameObject::check_collision();
         if(other != nullptr)
             collision(other);
-        
+
+        move();
 	}
 }

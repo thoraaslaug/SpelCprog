@@ -27,11 +27,13 @@ int main(int argc, char* argv[]){
     Player player(0, 400, 100, 100, "test.jpg");
     Wall wall1(500, 0, 100, 100);
     Wall wall2(0, 0, 20, 350);
-    DangerousWall::Instantiate(40 ,40);
-    Goal::Instantiate(400, 400);
+    DangerousWall dwall1(500, 300, 50, 50);
+    Goal* goal = Goal::Instantiate(200, 200);
+    goal->move_between(0, 75);
     ses.add(&player);
     ses.add(&wall1);
     ses.add(&wall2);
+    ses.add(&dwall1);
     ses.run();
     
     return 0;
