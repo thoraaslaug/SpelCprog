@@ -13,13 +13,12 @@ namespace grupp20{
     public:
         Player(int x, int y, int w, int h, std::string fileName);
         ~Player();
-	    //void draw() const;
-	    void tick() {}
-        void collision(const GameObject*) {}
-	    void mouseDown(int x, int y);
-        void ThrowBall();
         static const std::vector<Player*> getPlayers();
     private:
+	    void mouseDown(int x, int y);
+	    void tick() {}
+        void collision(const GameObject*) {}
+        void ThrowBall();
         static std::vector<Player*> players;
     };
 }

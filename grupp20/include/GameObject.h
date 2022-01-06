@@ -12,7 +12,6 @@ namespace grupp20{
         virtual void draw() const = 0;
         SDL_Rect getRect() const { return rect; }
         virtual void tick() = 0;
-        int tickSpeed = 1;
         virtual void collision(const GameObject*) = 0;
         virtual const GameObject* check_collision();
         void move_between(int, int);
@@ -20,6 +19,7 @@ namespace grupp20{
         GameObject(int x, int y, int w, int h) : rect{ x,y,w,h } {}
         void move();
         SDL_Rect rect;
+        int tickSpeed = 1;
 
         int counter;
 

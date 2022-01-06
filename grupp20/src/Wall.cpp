@@ -10,12 +10,6 @@ namespace grupp20{
     }
 
     void Wall::collision(const GameObject* other){
-        /*
-        const Ball* b = dynamic_cast<const Ball*>(other);
-
-        if(b != nullptr){
-            Ball* ball = const_cast<Ball*>(b);
-            ball->bounce();
-        }*/
+        printf("Wall was hit\n");
     }
 }

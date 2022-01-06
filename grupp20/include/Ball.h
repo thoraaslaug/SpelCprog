@@ -23,17 +23,17 @@ namespace grupp20{
     public:
         Ball (Velocity, int, int, int, int);
         ~Ball() { Sprite::~Sprite(); }
-	    void tick();
-        void collision(const GameObject*);
         static Ball* Instantiate(Velocity, int, int, int, int);
         void reset();
         static const std::vector<Ball*> getBalls();
         static const int getBallsSize();
-        void CalculateVelocity(Velocity);
         Velocity getVelocity(){ return velocity; }
+    private:
+        void CalculateVelocity(Velocity);
+	    void tick();
+        void collision(const GameObject*);
         int tickSpeed; //1 = fastest
         int speed;
-    private:
         void bounce(const GameObject*);
         Velocity velocity;
         static std::vector<Ball*> balls;

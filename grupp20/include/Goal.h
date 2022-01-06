@@ -13,15 +13,15 @@ namespace grupp20{
     class Goal : public Sprite{
     public:
         ~Goal();
-	    void tick();
-        void collision(const GameObject*);
         static Goal* Instantiate(int, int);
         void respawn();
-        void destroy_balls();
         void randomize_respawn(bool check) { randomizeRespawn = check; }
         const static std::vector<Goal*> getGoalList();
     private:
         Goal (int, int);
+	    void tick();
+        void collision(const GameObject*);
+        void destroy_balls();
         static std::vector<Goal*> goalList;
         bool randomizeRespawn = false;
     };
