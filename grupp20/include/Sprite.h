@@ -1,3 +1,6 @@
+//August Jansson auja6710
+//Thora Magnusdottir thma8722
+//Max Halling Maha1841
 #ifndef SPRITE_H
 #define SPRITE_H
 

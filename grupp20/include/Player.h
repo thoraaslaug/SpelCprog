@@ -1,3 +1,6 @@
+//August Jansson auja6710
+//Thora Magnusdottir thma8722
+//Max Halling Maha1841
 #ifndef PLAYER_H
 #define PLAYER_H
 
@@ -20,6 +23,12 @@ namespace grupp20{
         void collision(const GameObject*) {}
         void ThrowBall();
         static std::vector<Player*> players;
+        int getCenterX(){
+            return rect.w/2 + rect.x;
+        }
+        int getCenterY(){
+            return rect.h/2 + rect.y;
+        }
     };
 }
 

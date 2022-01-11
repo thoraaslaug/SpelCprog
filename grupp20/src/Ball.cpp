@@ -1,3 +1,7 @@
+//August Jansson auja6710
+//Thora Magnusdottir thma8722
+//Max Halling Maha1841
+
 #include "Ball.h"
 #include "GameSession.h"
 #include "Player.h"
@@ -19,7 +23,7 @@ namespace grupp20{
         if(latestCollision == other) return;
         latestCollision = other;
 
-        printf("Bounce!");
+        //printf("Bounce!");
         
         int otherCenterX = (other->getRect().w / 2);
         int otherCenterY = other->getRect().h / 2;
@@ -49,12 +53,12 @@ namespace grupp20{
         y /= magnitude;
 
         Velocity result = { x, y };
-        std::cout << "X: " << result.x << "    " << "Y: " << result.y << std::endl;
+        //std::cout << "X: " << result.x << "    " << "Y: " << result.y << std::endl;
         
         velocity = result;
     }
 
-    Ball::Ball(Velocity direction, int x = 0, int y = 0, int ballSpeed = 1, int tick = 1) : Sprite(x, y, BALL_SIZE, BALL_SIZE, "ball.jpg"){
+    Ball::Ball(Velocity direction, int x = 0, int y = 0, int ballSpeed = 1, int tick = 1) : Sprite(x, y, BALL_SIZE, BALL_SIZE, "Ball.png"){
         speed = ballSpeed;
         tickSpeed = tick;
         CalculateVelocity(direction);
@@ -69,7 +73,7 @@ namespace grupp20{
 	}
 
     void Ball::collision(const GameObject* other){
-        std::cout << "Collision!" << std::endl;
+        //std::cout << "Collision!" << std::endl;
 
         const Ball* b = dynamic_cast<const Ball*>(other);
 
@@ -83,7 +87,7 @@ namespace grupp20{
 
     void Ball::tick() {
         //latestCollision = nullptr;
-        std::cout << "X: " << velocity.x << "    " << "Y: " << velocity.y << std::endl;
+       // std::cout << "X: " << velocity.x << "    " << "Y: " << velocity.y << std::endl;
 
         //check collision
         const GameObject* other = GameObject::check_collision();

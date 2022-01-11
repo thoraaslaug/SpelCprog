@@ -1,3 +1,6 @@
+//August Jansson auja6710
+//Thora Magnusdottir thma8722
+//Max Halling Maha1841
 #include "GameSession.h"
 #include "System.h"
 #include "GameObject.h"
@@ -42,6 +45,12 @@ namespace grupp20
 				        for (GameObject* go : gameObjects)
 					        go->mouseUp(event.button.x, event.button.y);
 				        break;
+                    case SDL_KEYDOWN:
+                        if(event.key.keysym.scancode == SDL_SCANCODE_SPACE){
+                        for(GameObject* go : gameObjects)
+                            go->spacebar();
+                        }
+                        break;
                 }
             }//inre while
         
@@ -62,7 +71,7 @@ namespace grupp20
 					    i++;
 		    removed.clear();
 
-            SDL_SetRenderDrawColor(sys.renderer, 255, 255, 255, 255); //sätt bakgrundfärg
+            SDL_SetRenderDrawColor(sys.renderer, 25, 25, 25, 255); //sätt bakgrundfärg
             SDL_RenderClear(sys.renderer); //rensa rendreraren (crazy?! ang ^^^)
 
             for(GameObject* go : gameObjects)

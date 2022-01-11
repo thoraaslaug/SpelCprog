@@ -1,3 +1,6 @@
+//August Jansson auja6710
+//Thora Magnusdottir thma8722
+//Max Halling Maha1841
 #include "System.h"
 #include <SDL2/SDL.h>
 
@@ -25,5 +28,5 @@ namespace grupp20
 	    SDL_Quit();
     }
 
-    System sys;
+   System sys;
 }

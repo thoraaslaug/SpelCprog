@@ -1,3 +1,6 @@
+//August Jansson auja6710
+//Thora Magnusdottir thma8722
+//Max Halling Maha1841
 #include "Player.h"
 #include "Ball.h"
 #include "GameSession.h"
@@ -49,7 +52,8 @@ namespace grupp20{
     void Player::ThrowBall(){
         if(Ball::getBallsSize() >= MAX_BALLS) return;
 
-        Ball* ball = Ball::Instantiate(CalculateDirection(), rect.x + 100, rect.y - 100, 3, 1);
+        Ball* ball = Ball::Instantiate(CalculateDirection(), getCenterX() + rect.w + 10 , getCenterY() - rect.h - 10, 3, 1);
+        //std::cout << getCenterX() <<  " " << getCenterY() << std::endl;
         ses.add(ball);
     }
 }

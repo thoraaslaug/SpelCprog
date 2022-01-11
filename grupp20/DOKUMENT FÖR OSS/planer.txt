@@ -1,7 +1,0 @@
----PRIO---
-inget!
-
-spelare som siktar mot muspositionen
-definera konstanter för speldimensionerna och gör så att bollarna interagerar korrekt med dem
-
----handledning---

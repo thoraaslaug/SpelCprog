@@ -1,3 +1,6 @@
+//August Jansson auja6710
+//Thora Magnusdottir thma8722
+//Max Halling Maha1841
 #ifndef GAMEOBJECT_H
 #define GAMEOBJECT_H
 #include <SDL2/SDL.h>
@@ -9,6 +12,7 @@ namespace grupp20{
     public:
         virtual void mouseDown(int x, int y) {}
         virtual void mouseUp(int x, int y) {}
+        virtual void spacebar() {}
         virtual void draw() const = 0;
         SDL_Rect getRect() const { return rect; }
         virtual void tick() = 0;

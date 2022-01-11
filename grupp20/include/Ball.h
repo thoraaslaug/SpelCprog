@@ -1,3 +1,6 @@
+//August Jansson auja6710
+//Thora Magnusdottir thma8722
+//Max Halling Maha1841
 #ifndef BALL_H
 #define BALL_H
 
@@ -7,7 +10,7 @@
 #include <string>
 #include <vector>
 
-#define BALL_SIZE 50 //bollstorlek i pixlar
+#define BALL_SIZE 24 //bollstorlek i pixlar
 
 namespace grupp20{
 

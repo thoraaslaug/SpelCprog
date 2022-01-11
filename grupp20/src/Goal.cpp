@@ -1,3 +1,6 @@
+//August Jansson auja6710
+//Thora Magnusdottir thma8722
+//Max Halling Maha1841
 #include "Goal.h"
 #include "GameSession.h"
 #include "Player.h"
@@ -15,7 +18,7 @@ namespace grupp20{
 
     const std::vector<Goal*> Goal::getGoalList() { return goalList; }
 
-    Goal::Goal(int x = 0, int y = 0) : Sprite(x, y, GOAL_SIZE, GOAL_SIZE, "hoop.jpg"){
+    Goal::Goal(int x = 0, int y = 0) : Sprite(x, y, GOAL_SIZE, GOAL_SIZE, "Goal.png"){
         goalList.push_back(this);
         XOrigin = x;
         YOrigin = y;
@@ -36,6 +39,10 @@ namespace grupp20{
         Sprite::~Sprite();
     }
 
+    void Goal::spacebar(){
+        destroy_balls();
+    }
+
     void Goal::respawn(){
         int x = rect.x;
         int y = rect.y;
@@ -51,7 +58,7 @@ namespace grupp20{
             x = rand()% Xrangemax + Xrangemin;
             y = rand()% Yrangemax + Yrangemin;
 
-            std::cout << "Goal X:" << x << "Goal Y:" << y << std::endl;
+            //std::cout << "Goal X:" << x << "Goal Y:" << y << std::endl;
             rect.x = x;
             rect.y = y;
         }
@@ -81,8 +88,9 @@ namespace grupp20{
 
         if(b != nullptr){
             b->reset();
-            std::cout << "GOOOOOOAL!" << std::endl;
+            std::cout << "Player score: " << ++playerScore << std::endl;
             }
+
         //destroy_balls();
         respawn();
     }

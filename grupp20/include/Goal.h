@@ -1,3 +1,6 @@
+//August Jansson auja6710
+//Thora Magnusdottir thma8722
+//Max Halling Maha1841
 #ifndef GOAL_H
 #define GOAL_H
 
@@ -6,7 +9,7 @@
 #include "Player.h"
 #include "Ball.h"
 
-#define GOAL_SIZE 150 //Målets storlek i pixlar
+#define GOAL_SIZE 100 //Målets storlek i pixlar
 
 namespace grupp20{
 
@@ -21,9 +24,11 @@ namespace grupp20{
         Goal (int, int);
 	    void tick();
         void collision(const GameObject*);
+        void spacebar();
         void destroy_balls();
         static std::vector<Goal*> goalList;
         bool randomizeRespawn = false;
+        int playerScore = 0;
     };
     
 }
